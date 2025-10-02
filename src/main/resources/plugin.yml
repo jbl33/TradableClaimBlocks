@@ -1,0 +1,6 @@
+name: TradableClaimBlocks
+version: 0.1
+main: net.jbl33.tradableclaimblocks.TradableClaimBlocks
+commands:
+  withdrawclaimblocks:
+    description: Allows the user to withdraw a certain number of claim blocks.
