@@ -49,8 +49,6 @@ public class RedeemClaimBlocks implements Listener {
                                 }
                             }
                         }
-                    } else {
-                        player.sendMessage(e.getItem().getItemMeta().getDisplayName());
                     }
                 }
             }

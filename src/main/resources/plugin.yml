@@ -1,8 +1,10 @@
 name: TradableClaimBlocks
-version: 0.1
+version: 1.0
 main: net.jbl33.tradableclaimblocks.TradableClaimBlocks
 commands:
   withdrawclaimblocks:
     description: Allows the user to withdraw a certain number of claim blocks.
   claimblocks:
     description: Allows the player to check their claim blocks count.
+  tradableclaimblocks:
+    description: Reveals the developer information for this plugin

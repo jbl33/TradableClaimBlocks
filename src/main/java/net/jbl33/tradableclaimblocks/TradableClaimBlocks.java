@@ -1,6 +1,7 @@
 package net.jbl33.tradableclaimblocks;
 
 import net.jbl33.tradableclaimblocks.commands.ClaimBlocksCommand;
+import net.jbl33.tradableclaimblocks.commands.DeveloperInfoCommand;
 import net.jbl33.tradableclaimblocks.commands.WithdrawClaimBlocks;
 import net.jbl33.tradableclaimblocks.events.RedeemClaimBlocks;
 import org.bukkit.ChatColor;
@@ -14,9 +15,12 @@ import java.util.Arrays;
 
 public class TradableClaimBlocks extends JavaPlugin {
 
+    public static double version = 1.0;
+
     @Override
     public void onEnable() {
         System.out.println("TradableClaimBlocks has been started");
+        getCommand("tradableclaimblocks").setExecutor(new DeveloperInfoCommand());
         getCommand("withdrawclaimblocks").setExecutor(new WithdrawClaimBlocks());
         getCommand("claimblocks").setExecutor(new ClaimBlocksCommand());
         this.getServer().getPluginManager().registerEvents(new RedeemClaimBlocks(), this);
