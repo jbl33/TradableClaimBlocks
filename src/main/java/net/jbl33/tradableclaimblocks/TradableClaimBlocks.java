@@ -38,7 +38,7 @@ public class TradableClaimBlocks extends JavaPlugin {
         noteMeta.setLore(Arrays.asList(
                 ChatColor.GRAY + "Right-click to redeem",
                 ChatColor.GRAY + "Grants " + ChatColor.GOLD + claimBlocksAmount + ChatColor.GRAY + " claim blocks!",
-                ChatColor.GRAY + "Redeemed by: " + ChatColor.BLUE + player.getName()));
+                ChatColor.GRAY + "Withdrawn by: " + ChatColor.BLUE + player.getName()));
         note.setItemMeta(noteMeta);
         return note;
     }
