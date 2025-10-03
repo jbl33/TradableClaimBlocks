@@ -4,3 +4,5 @@ main: net.jbl33.tradableclaimblocks.TradableClaimBlocks
 commands:
   withdrawclaimblocks:
     description: Allows the user to withdraw a certain number of claim blocks.
+  claimblocks:
+    description: Allows the player to check their claim blocks count.

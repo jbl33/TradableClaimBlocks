@@ -13,7 +13,7 @@ public class WithdrawClaimBlocks implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(args.length != 1) {
+        if (args.length != 1) {
             sender.sendMessage(ChatColor.RED + "Proper usage: /withdrawclaimblocks (number)");
         } else {
             if (sender instanceof Player) {
@@ -21,26 +21,29 @@ public class WithdrawClaimBlocks implements CommandExecutor {
                 int numberOfClaimBlocks;
                 try {
                     numberOfClaimBlocks = Integer.parseInt(args[0]);
-                    int playerClaimBlocks = GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).getAccruedClaimBlocks();
-                    if(playerClaimBlocks >= numberOfClaimBlocks) {
-                        if(TradableClaimBlocks.hasEmptySlot(player)) {
-                            ItemStack claimNote = TradableClaimBlocks.getBlockClaimNote(player, numberOfClaimBlocks);
-                            int newClaimBlocks = playerClaimBlocks - numberOfClaimBlocks;
-                            // Setting the player's new claim blocks
-                            GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).setAccruedClaimBlocks(newClaimBlocks);
-                            player.getInventory().addItem(claimNote);
-                            player.sendMessage(ChatColor.GREEN + "You have successfully withdrawn " + ChatColor.GOLD + numberOfClaimBlocks +
-                                    ChatColor.GREEN + " claim block(s)!");
+                    if(numberOfClaimBlocks > 0) {
+                        int playerClaimBlocks = GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).getAccruedClaimBlocks();
+                        if (playerClaimBlocks >= numberOfClaimBlocks) {
+                            if (TradableClaimBlocks.hasEmptySlot(player)) {
+                                ItemStack claimNote = TradableClaimBlocks.getBlockClaimNote(player, numberOfClaimBlocks);
+                                int newClaimBlocks = playerClaimBlocks - numberOfClaimBlocks;
+                                // Setting the player's new claim blocks
+                                GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).setAccruedClaimBlocks(newClaimBlocks);
+                                player.getInventory().addItem(claimNote);
+                                player.sendMessage(ChatColor.GREEN + "You have successfully withdrawn " + ChatColor.GOLD + numberOfClaimBlocks +
+                                        ChatColor.GREEN + " claim block(s)!");
+                            } else {
+                                player.sendMessage(ChatColor.RED + "You cannot withdraw claim blocks as your inventory is full!");
+                            }
                         } else {
-                            player.sendMessage(ChatColor.RED + "You cannot withdraw claim blocks as your inventory is full!");
+                            player.sendMessage(ChatColor.RED + "You don't have enough claim blocks to withdraw " + numberOfClaimBlocks + " blocks!");
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "You don't have enough claim blocks to withdraw " + numberOfClaimBlocks + " blocks!");
+                        player.sendMessage(ChatColor.RED + "Amount must be greater than 0");
                     }
-                } catch(Exception e) {
+                } catch (Exception e) {
                     player.sendMessage(ChatColor.RED + "Error converting the number of claim blocks to an Integer");
                 }
-                // player.sendMessage("" + GriefPrevention.instance.dataStore.getPlayerData(player.getUniqueId()).getAccruedClaimBlocks());
             } else {
                 sender.sendMessage("You cannot run this command from console!");
             }
